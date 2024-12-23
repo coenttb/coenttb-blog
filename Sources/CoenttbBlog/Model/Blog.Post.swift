@@ -73,13 +73,13 @@ extension Blog.Post {
     public enum Hidden: Equatable {
         case no
         case preview
-        case noUntil(Date)
+        case yesUntil(Date)
         case yes
         public func isCurrentlyHidden(date currentDate: Date) -> Bool {
             switch self {
             case .no:
                 false
-            case let .noUntil(date):
+            case let .yesUntil(date):
                 currentDate >= date
             case .yes:
                 true
@@ -95,24 +95,15 @@ extension Blog.Post {
         @Dependency(\.blog) var blogClient
         @Dependency(\.language) var language
 
-        let baseNames = [
-            "Blog-\(index)",
-            "Blog-\(index)-en"
-        ]
-
-        let previewBaseNames = [
-            "Preview-Blog-\(index)",
-            "Preview-Blog-\(index)-en"
-        ]
-
-        let fileNames = (self.hidden == .preview ? previewBaseNames : baseNames)
-            .flatMap {
-                [
-                    $0 + "-\(language.rawValue)",
-                    $0
-                ]
-            }
-
+        
+        guard self.hidden != .yes
+        else {
+            return nil
+        }
+        
+        let fileNames = Language.allCases.map {
+            blogClient.postToFilename(self)($0)
+        }
         return fileNames
             .lazy
             .compactMap { fileName in

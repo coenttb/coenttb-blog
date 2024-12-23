@@ -7,6 +7,7 @@
 
 import Foundation
 import Testing
+import Dependencies
 @testable import CoenttbBlog
 import DependenciesTestSupport
 
@@ -18,6 +19,10 @@ let filenameToResourceUrl: @Sendable (String) -> URL? = { Bundle.module.url(forR
 )
 struct TestSuite {
     @Test func test() async throws {
+        @Dependency(\.blog.getAll) var getAll
         
+        let x = getAll()
+        
+        #expect(x.count == 1)
     }
 }
