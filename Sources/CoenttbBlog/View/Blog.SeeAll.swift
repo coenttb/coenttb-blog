@@ -41,7 +41,7 @@ extension Blog {
                         horizontalSpacing: 1.rem,
                         verticalSpacing: 1.rem
                     ) {
-                        for post in posts {
+                        for post in posts.reversed() {
                             Blog.Post.Card(post)
                                 .maxWidth(24.rem, media: .desktop)
                                 .margin(top: 1.rem, right: 0, bottom: 2.rem, left: 0)
