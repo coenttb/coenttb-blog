@@ -11,7 +11,7 @@ extension Blog {
     public struct Post: @unchecked Sendable {
         public let id: UUID
         public let index: Int
-        public var category: String?
+        public var category: TranslatedString?
         public var publishedAt: Date
         public var image: any HTML
         public var title: String
@@ -25,7 +25,7 @@ extension Blog {
         public init(
             id: UUID,
             index: Int,
-            category: String? = nil,
+            category: TranslatedString? = nil,
             publishedAt: Date,
             image: any HTML,
             title: String,

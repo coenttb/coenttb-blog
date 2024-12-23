@@ -37,7 +37,7 @@ extension Blog.Post {
                     
                     VStack(spacing: 0.5.rem) {
                         div {
-                            "Blog \(post.index)"
+                            HTMLText("Blog \(post.index)\(post.category.map { " \($0.description)" } ?? "")")
                         }
                         .color(.tertiary)
                         .fontStyle(.body(.small))
