@@ -21,7 +21,8 @@ extension Blog.Post {
         let post: Blog.Post
         
         var href: URL? {
-            blogClient.postToRoute(post)
+//            blogClient.postToRoute(post)
+            blogClient.urlForPost(post: post)(language)
         }
         
         
