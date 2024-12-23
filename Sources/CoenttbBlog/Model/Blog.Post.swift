@@ -5,12 +5,7 @@
 //  Created by Coen ten Thije Boonkkamp on 19/08/2024.
 //
 
-import CoenttbMarkdown
-import HTML
-import Date
-import Dependencies
-import Foundation
-import Languages
+import CoenttbWeb
 
 extension Blog {
     public struct Post: @unchecked Sendable {
@@ -94,6 +89,7 @@ extension Blog.Post {
     public var content: String? {
         @Dependency(\.blog) var blogClient
         @Dependency(\.language) var language
+        @Dependency(\.languages) var languages
 
         
         guard self.hidden != .yes
@@ -101,7 +97,7 @@ extension Blog.Post {
             return nil
         }
         
-        let fileNames = Language.allCases.map {
+        let fileNames = languages.map {
             blogClient.postToFilename(self)($0)
         }
         return fileNames
