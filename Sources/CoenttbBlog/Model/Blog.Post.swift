@@ -16,6 +16,7 @@ extension Blog {
     public struct Post: @unchecked Sendable {
         public let id: UUID
         public let index: Int
+        public var category: String?
         public var publishedAt: Date
         public var image: any HTML
         public var title: String
@@ -26,10 +27,10 @@ extension Blog {
         public var estimatedTimeToComplete: DateComponents
         public var permission: Permission
         
-        
         public init(
             id: UUID,
             index: Int,
+            category: String? = nil,
             publishedAt: Date,
             image: any HTML,
             title: String,
@@ -42,6 +43,7 @@ extension Blog {
         ) {
             self.id = id
             self.index = index
+            self.category = category
             self.publishedAt = publishedAt
             self.image = image
             self.title = title
