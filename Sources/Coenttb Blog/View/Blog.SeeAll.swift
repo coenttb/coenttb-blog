@@ -5,8 +5,7 @@
 //  Created by Coen ten Thije Boonkkamp on 13/12/2024.
 //
 
-import CoenttbMarkdown
-import CoenttbWebHTML
+import Coenttb_Web
 import Date
 import Dependencies
 import Foundation
@@ -14,7 +13,7 @@ import Languages
 
 extension Blog {
     public struct AllPostsModule: HTML {
-
+        
         let posts: [Blog.Post]
         
         public init(posts: [Blog.Post]) {
@@ -30,7 +29,7 @@ extension Blog {
         }
         
         @Dependency(\.language) var language
-
+        
         public var body: some HTML {
             PageModule(
                 theme: .content
@@ -58,19 +57,19 @@ extension Blog {
 
 
 public struct PageModuleTitle<Title: HTML>: HTML {
-
+    
     let title: Title
-
+    
     public init(
         @HTMLBuilder title: () -> Title
     ) {
         self.title = title()
     }
-
+    
     public init(title: String) where Title == Header<HTMLText> {
         self.title = Header(3) { HTMLText(title) }
     }
-
+    
     public var body: some HTML {
         div {
             title

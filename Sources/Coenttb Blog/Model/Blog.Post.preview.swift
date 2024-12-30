@@ -5,15 +5,14 @@
 //  Created by Coen ten Thije Boonkkamp on 20/08/2024.
 //
 
-import CoenttbMarkdown
-import CoenttbHTML
+import Coenttb_Web
 import Date
 import Dependencies
 import Foundation
 import Languages
 
-extension [CoenttbBlog.Blog.Post] {
-    public static let preview: [CoenttbBlog.Blog.Post] = [
+extension [Coenttb_Blog.Blog.Post] {
+    public static let preview: [Coenttb_Blog.Blog.Post] = [
         .init(
             id: .init(),
             index: 1,

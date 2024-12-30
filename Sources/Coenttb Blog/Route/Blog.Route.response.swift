@@ -5,17 +5,17 @@
 //  Created by Coen ten Thije Boonkkamp on 16/12/2024.
 //
 
-import Vapor
-import CoenttbWebHTML
+import Coenttb_Web
 import Dependencies
 import Foundation
 import Languages
+import Coenttb_Vapor
 
-extension CoenttbBlog.Route {
+extension Coenttb_Blog.Route {
     public static func response<
         Overlay: HTML
     >(
-        route: CoenttbBlog.Route,
+        route: Coenttb_Blog.Route,
         blurb: TranslatedString,
         companyXComHandle: String?,
         getCurrentUser: () -> (newsletterSubscribed: Bool, accessToBlog: Bool)?,
@@ -65,7 +65,7 @@ extension CoenttbBlog.Route {
                     HTMLGroup {
                         header()
                         
-                        CoenttbBlog.Blog.AllPostsModule(
+                        Coenttb_Blog.Blog.AllPostsModule(
                             posts: posts
                         )
                     }

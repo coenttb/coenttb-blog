@@ -39,15 +39,15 @@ extension Route {
     public static func post(_ post: Blog.Post) -> Route { .post(slug: post.slug) }
 }
 
-extension CoenttbBlog.Route {
+extension Coenttb_Blog.Route {
     public struct Router: ParserPrinter {
         
         public init(){}
         
-        public var body: some URLRouting.Router<CoenttbBlog.Route> {
+        public var body: some URLRouting.Router<Coenttb_Blog.Route> {
             OneOf {
                 
-                URLRouting.Route(.case(CoenttbBlog.Route.post)) {
+                URLRouting.Route(.case(Coenttb_Blog.Route.post)) {
                     Path {
                         OneOf {
                             Parse {
@@ -60,7 +60,7 @@ extension CoenttbBlog.Route {
                     }
                 }
 
-                URLRouting.Route(.case(CoenttbBlog.Route.index))
+                URLRouting.Route(.case(Coenttb_Blog.Route.index))
             }
         }
     }

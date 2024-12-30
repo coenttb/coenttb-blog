@@ -8,7 +8,7 @@
 import Foundation
 import Testing
 import Dependencies
-@testable import CoenttbBlog
+@testable import Coenttb_Blog
 import DependenciesTestSupport
 
 let filenameToResourceUrl: @Sendable (String) -> URL? = { Bundle.module.url(forResource: $0, withExtension: "md") }

@@ -9,7 +9,7 @@ import Foundation
 import Dependencies
 import DependenciesMacros
 import Date
-import CoenttbHTML
+import Coenttb_Web
 import Languages
 
 @DependencyClient
@@ -30,7 +30,7 @@ public struct Client: @unchecked Sendable {
 public enum BlogKey { }
 
 extension BlogKey: TestDependencyKey {
-    public static let testValue: CoenttbBlog.Client = .init(
+    public static let testValue: Coenttb_Blog.Client = .init(
         getAll: {
             [
                 .preview
@@ -78,7 +78,7 @@ extension DependencyValues {
 }
 
 extension DependencyValues {
-    public var blog: CoenttbBlog.Client {
+    public var blog: Coenttb_Blog.Client {
         get { self[BlogKey.self] }
         set { self[BlogKey.self] = newValue }
     }

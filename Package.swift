@@ -4,7 +4,7 @@ import Foundation
 import PackageDescription
 
 extension String {
-    static let coenttbBlog: Self = "CoenttbBlog"
+    static let coenttbBlog: Self = "Coenttb Blog"
 }
 
 extension Target.Dependency {
@@ -12,7 +12,8 @@ extension Target.Dependency {
 }
 
 extension Target.Dependency {
-    static var coenttbWeb: Self { .product(name: "CoenttbWeb", package: "coenttb-web") }
+    static var coenttbWeb: Self { .product(name: "Coenttb Web", package: "coenttb-web") }
+    static var coenttbVapor: Self { .product(name: "Coenttb Vapor", package: "coenttb-server") }
     static var dependenciesMacros: Self { .product(name: "DependenciesMacros", package: "swift-dependencies") }
     static var dependenciesTestSupport: Self { .product(name: "DependenciesTestSupport", package: "swift-dependencies") }
     static var either: Self { .product(name: "Either", package: "swift-prelude") }
@@ -28,15 +29,9 @@ let package = Package(
         .library(name: .coenttbBlog, targets: [.coenttbBlog]),
     ],
     dependencies: [
-        .package(url: "https://github.com/coenttb/coenttb-html", branch: "main"),
         .package(url: "https://github.com/coenttb/coenttb-web", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-date", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-environment-variables.git", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-language.git", branch: "main"),
-        .package(url: "https://github.com/coenttb/swift-web", branch: "main"),
-        .package(url: "https://github.com/gohanlon/swift-memberwise-init-macro", from: "0.3.0"),
+        .package(url: "https://github.com/coenttb/coenttb-server", branch: "main"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.5"),
-        .package(url: "https://github.com/pointfreeco/swift-url-routing", from: "0.6.0"),
         .package(url: "https://github.com/pointfreeco/swift-prelude", from: "0.6.0"),
     ],
     targets: [
@@ -46,6 +41,7 @@ let package = Package(
                 .dependenciesMacros,
                 .either,
                 .coenttbWeb,
+                .coenttbVapor,
             ]
         ),
         .testTarget(

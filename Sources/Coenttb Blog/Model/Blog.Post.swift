@@ -5,7 +5,7 @@
 //  Created by Coen ten Thije Boonkkamp on 19/08/2024.
 //
 
-import CoenttbWeb
+import Coenttb_Web
 
 extension Blog {
     public struct Post: @unchecked Sendable {

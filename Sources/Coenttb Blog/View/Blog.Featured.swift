@@ -5,13 +5,12 @@
 //  Created by Coen ten Thije Boonkkamp on 19/08/2024.
 //
 
-import CoenttbMarkdown
-import CoenttbWebHTML
+import Coenttb_Web
 import Date
 import Dependencies
 import Foundation
 import Languages
-import CoenttbWebTranslations
+import Coenttb_Web
 
 extension Blog {
     public struct FeaturedModule: HTML {

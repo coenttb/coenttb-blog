@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CoenttbHTML
+import Coenttb_Web
 
 public struct Blog {
     public var featured: (Blog.Post?, Blog.Post?, Blog.Post?) {
