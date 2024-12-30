@@ -91,23 +91,14 @@ extension Blog.Post {
         @Dependency(\.language) var language
         @Dependency(\.languages) var languages
 
-        
         guard self.hidden != .yes
         else {
             return nil
         }
         
-        let fileNames = languages.map {
-            blogClient.postToFilename(self)($0)
-        }
-        return fileNames
-            .lazy
-            .compactMap { fileName in
-                blogClient.filenameToResourceUrl(fileName)
-                    .flatMap { try? Data(contentsOf: $0) }
-                    .flatMap { String(data: $0, encoding: .utf8) }
-            }
-            .first
+        return blogClient.filenameToResourceUrl(blogClient.postToFilename(self)(language))
+            .flatMap { try? Data(contentsOf: $0) }
+            .flatMap { String(data: $0, encoding: .utf8) }
     }
 }
 
