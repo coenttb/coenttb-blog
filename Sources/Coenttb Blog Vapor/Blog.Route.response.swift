@@ -9,6 +9,7 @@ import Coenttb_Web
 import Dependencies
 import Foundation
 import Languages
+import Coenttb_Blog
 import Coenttb_Vapor
 
 extension Coenttb_Blog.Route {

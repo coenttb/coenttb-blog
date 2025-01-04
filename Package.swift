@@ -5,10 +5,12 @@ import PackageDescription
 
 extension String {
     static let coenttbBlog: Self = "Coenttb Blog"
+    static let coenttbBlogVapor: Self = "Coenttb Blog Vapor"
 }
 
 extension Target.Dependency {
     static var coenttbBlog: Self { .target(name: .coenttbBlog) }
+    static var coenttbBlogVapor: Self { .target(name: .coenttbBlogVapor) }
 }
 
 extension Target.Dependency {
@@ -27,10 +29,10 @@ let package = Package(
     ],
     products: [
         .library(name: .coenttbBlog, targets: [.coenttbBlog]),
+        .library(name: .coenttbBlogVapor, targets: [.coenttbBlogVapor]),
     ],
     dependencies: [
         .package(url: "https://github.com/coenttb/coenttb-web", branch: "main"),
-        .package(url: "https://github.com/coenttb/coenttb-server", branch: "main"),
         .package(url: "https://github.com/coenttb/coenttb-server-vapor", branch: "main"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.5"),
         .package(url: "https://github.com/pointfreeco/swift-prelude", from: "0.6.0"),
@@ -39,6 +41,15 @@ let package = Package(
         .target(
             name: .coenttbBlog,
             dependencies: [
+                .dependenciesMacros,
+                .either,
+                .coenttbWeb
+            ]
+        ),
+        .target(
+            name: .coenttbBlogVapor,
+            dependencies: [
+                .coenttbBlog,
                 .dependenciesMacros,
                 .either,
                 .coenttbWeb,
