@@ -38,7 +38,7 @@ extension Blog.Post {
                         div {
                             HTMLText("Blog \(post.index)\(post.category.map { " \($0.description)" } ?? "")")
                         }
-                        .color(.tertiary)
+                        .color(.text.tertiary)
                         .fontStyle(.body(.small))
                         
                         div {
@@ -51,13 +51,13 @@ extension Blog.Post {
                                         HTMLText(subtitle)
                                     }
                                 }
-                                .linkColor(.primary)
+                                .linkColor(.text.primary)
                             }
                         }
                     }
                     
                     HTMLMarkdown(post.blurb)
-                        .color(.primary)
+                        .color(.text.primary)
                         .linkStyle(
                             LinkStyle(
                                 color: .gray400.withDarkColor(.gray650), underline: true))
