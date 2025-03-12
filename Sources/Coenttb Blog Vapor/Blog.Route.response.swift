@@ -35,14 +35,16 @@ extension Coenttb_Blog.Route {
                     }
                 ) {
                     HTMLGroup {
-                        HTMLText(String.curious_what_is_next.description.capitalizingFirstLetter().questionmark.description)
+                        String.curious_what_is_next.description.capitalizingFirstLetter().questionmark.description
+                            .color(.text.secondary)
+                        
+                        HTMLText(" ")
                         
                         if let companyXComHandle {
                             Link(String.follow_me_on_Twitter.capitalizingFirstLetter().period.description, href: "https://x.com/\(companyXComHandle)")
                                 .linkUnderline(true)
                         }
                     }
-                    .color(.gray300.withDarkColor(.gray800))
                 }
             }
 
