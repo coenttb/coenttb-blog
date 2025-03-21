@@ -13,14 +13,12 @@ import Coenttb_Blog
 import Coenttb_Vapor
 
 extension Coenttb_Blog.Route {
-    public static func response<
-        Overlay: HTML
-    >(
+    public static func response(
         route: Coenttb_Blog.Route,
         blurb: TranslatedString,
         companyXComHandle: String?,
         getCurrentUser: () -> (newsletterSubscribed: Bool, accessToBlog: Bool)?,
-        coenttbWebNewsletter: (() -> Overlay)?,
+        coenttbWebNewsletter: (() -> any HTML)?,
         defaultDocument: @escaping (() -> any HTML) -> any AsyncResponseEncodable,
         posts: [Blog.Post]
     ) async throws -> any AsyncResponseEncodable {
@@ -35,7 +33,7 @@ extension Coenttb_Blog.Route {
                     }
                 ) {
                     HTMLGroup {
-                        String.curious_what_is_next.description.capitalizingFirstLetter().questionmark.description
+                        "\(String.curious_what_is_next.description.capitalizingFirstLetter())".questionmark
                             .color(.text.secondary)
                         
                         HTMLText(" ")
@@ -115,7 +113,7 @@ extension Coenttb_Blog.Route {
                     Blog.Post.View(post: post)
 
                     if let coenttbWebNewsletter {
-                        coenttbWebNewsletter()
+                        AnyHTML(coenttbWebNewsletter())
                     }
                 }
             }
