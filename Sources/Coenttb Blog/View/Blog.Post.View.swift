@@ -38,7 +38,7 @@ extension Blog.Post {
                 PageModule(theme: .content) {
                     TextArticle {
                         div {
-                            HTMLText("Blog \(post.index)\(post.category.map { " \($0.description)" } ?? "") \(post.publishedAt.formatted(date: .complete, time: .omitted))")
+                            HTMLText("Blog \(post.index)\(post.category.map { " \($0.description)" } ?? "") - \(post.publishedAt.formatted(date: .complete, time: .omitted))")
                         }
                         .color(.text.tertiary)
                         .fontStyle(.body(.small))
