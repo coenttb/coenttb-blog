@@ -5,7 +5,6 @@
 //  Created by Coen ten Thije Boonkkamp on 19/08/2024.
 //
 
-import Foundation
 import Coenttb_Web
 
 public struct Blog {

@@ -6,15 +6,13 @@
 //
 
 import Coenttb_Web
-import Date
-import Dependencies
-import Foundation
-import Languages
 
 extension Blog.Post {
     public struct View: HTML {
         
         let post: Blog.Post
+        
+        @Dependency(\.locale) var locale
         
         public init(post: Blog.Post) {
             self.post = post
@@ -39,6 +37,12 @@ extension Blog.Post {
             if let content = post.content {
                 PageModule(theme: .content) {
                     TextArticle {
+                        div {
+                            HTMLText("Blog \(post.index)\(post.category.map { " \($0.description)" } ?? "") \(post.publishedAt.formatted(date: .complete, time: .omitted))")
+                        }
+                        .color(.text.tertiary)
+                        .fontStyle(.body(.small))
+                        
                         HTMLMarkdown {
                             content
                         }
@@ -49,3 +53,13 @@ extension Blog.Post {
         }
     }
 }
+
+#if canImport(SwiftUI)
+import SwiftUI
+#Preview {
+    HTMLPreview.modern {
+        Blog.Post.View(post: .preview)
+    }
+}
+
+#endif

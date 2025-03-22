@@ -6,11 +6,6 @@
 //
 
 import Coenttb_Web
-import Date
-import Dependencies
-import Foundation
-import Languages
-import Coenttb_Web
 
 extension Blog {
     public struct FeaturedModule: HTML {

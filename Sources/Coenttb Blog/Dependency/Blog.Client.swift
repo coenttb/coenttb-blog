@@ -5,12 +5,16 @@
 //  Created by Coen ten Thije Boonkkamp on 10/12/2024.
 //
 
-import Foundation
 import Dependencies
 import DependenciesMacros
 import Date
 import Coenttb_Web
 import Languages
+
+import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 @DependencyClient
 public struct Client: @unchecked Sendable {
@@ -52,7 +56,6 @@ extension BlogKey: TestDependencyKey {
                 let previewBaseName = "Preview-Blog-\(post.index)"
                 
                 return (post.hidden == .preview ? previewBaseName : baseName) + "-\(language.rawValue)"
-                
             }
         }
     )
@@ -67,7 +70,7 @@ extension Client {
 }
 
 fileprivate enum FilenameToResourceUrlKey: TestDependencyKey {
-    nonisolated(unsafe) static var testValue: @Sendable (String) -> URL? = { _ in nil }
+    static let testValue: @Sendable (String) -> URL? = { _ in nil }
 }
 
 extension DependencyValues {

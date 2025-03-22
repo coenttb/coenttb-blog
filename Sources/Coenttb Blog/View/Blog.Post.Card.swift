@@ -6,10 +6,6 @@
 //
 
 import Coenttb_Web
-import Date
-import Dependencies
-import Foundation
-import Languages
 
 extension Blog.Post {
     public struct Card: HTML {
@@ -36,7 +32,7 @@ extension Blog.Post {
                     
                     VStack(spacing: 0.5.rem) {
                         div {
-                            HTMLText("Blog \(post.index)\(post.category.map { " \($0.description)" } ?? "")")
+                            HTMLText("Blog \(post.index)\(post.category.map { " \($0.description)" } ?? "") \(post.publishedAt.formatted(date: .complete, time: .omitted))")
                         }
                         .color(.text.tertiary)
                         .fontStyle(.body(.small))
