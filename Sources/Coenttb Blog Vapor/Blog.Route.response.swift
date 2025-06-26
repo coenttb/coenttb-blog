@@ -36,7 +36,7 @@ extension Coenttb_Blog.Route {
                         HTMLText(" ")
                         
                         if let companyXComHandle {
-                            Link(String.follow_me_on_Twitter.capitalizingFirstLetter().period.description, href: "https://x.com/\(companyXComHandle)")
+                            Link(String.follow_me_on_Twitter.capitalizingFirstLetter().period.description, href: .init("https://x.com/\(companyXComHandle)"))
                                 .linkUnderline(true)
                         }
                     }

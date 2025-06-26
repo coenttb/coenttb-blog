@@ -21,14 +21,22 @@ extension Blog.Post {
         public var body: some HTML {
             div {
                 div {
-                    AnyHTML(post.image.loading(.lazy))
-                        .position(.absolute, top: 0, right: 0, bottom: 0, left: 0)
+                    AnyHTML(post.image)
+                        .position(
+                            .absolute,
+                            top: .zero,
+                            right: .zero,
+                            bottom: .zero,
+                            left: .zero
+                        )
                 }
-                .clipPath(.circle(50.percent))
+                .clipPath(.circle(.percent(50)))
                 .position(.relative)
-                .size(10.rem)
+                .size(.rem(10))
             }
-            .padding(top: .large)
+            .padding(
+                top: .length(.large)
+            )
             .flexContainer(
                 justification: .center,
                 itemAlignment: .center
@@ -41,7 +49,7 @@ extension Blog.Post {
                             HTMLText("Blog \(post.index)\(post.category.map { " \($0.description)" } ?? "") - \(post.publishedAt.formatted(date: .complete, time: .omitted))")
                         }
                         .color(.text.tertiary)
-                        .fontStyle(.body(.small))
+                        .font(.body(.small))
                         
                         HTMLMarkdown {
                             content
@@ -57,7 +65,7 @@ extension Blog.Post {
 #if canImport(SwiftUI)
 import SwiftUI
 #Preview {
-    HTMLPreview.modern {
+    HTMLDocument.modern {
         Blog.Post.View(post: .preview)
     }
 }

@@ -33,19 +33,24 @@ extension Blog {
                 VStack {
                     LazyVGrid(
                         columns: [.desktop: columns],
-                        horizontalSpacing: 1.rem,
-                        verticalSpacing: 1.rem
+                        horizontalSpacing: .rem(1),
+                        verticalSpacing: .rem(1)
                     ) {
-                        for post in posts.reversed() {
+                        HTMLForEach(posts.reversed()) { post in
                             Blog.Post.Card(post)
-                                .maxWidth(24.rem, media: .desktop)
-                                .margin(top: 1.rem, right: 0, bottom: 2.rem, left: 0)
+                                .maxWidth(.rem(24), media: .desktop)
+                                .margin(
+                                    top: .rem(1),
+                                    right: .zero,
+                                    bottom: .rem(2),
+                                    left: .zero
+                                )
                         }
                     }
                 }
             } title: {
                 PageModuleTitle(title: String.all_posts.capitalizingFirstLetter().description)
-                    .padding(bottom: 2.rem)
+                    .padding(bottom: .rem(2))
             }
         }
     }
@@ -62,7 +67,7 @@ public struct PageModuleTitle<Title: HTML>: HTML {
         self.title = title()
     }
     
-    public init(title: String) where Title == Header<HTMLText> {
+    public init(title: String) where Title == CoenttbHTML.Header<HTMLText> {
         self.title = Header(3) { HTMLText(title) }
     }
     
@@ -70,13 +75,13 @@ public struct PageModuleTitle<Title: HTML>: HTML {
         div {
             title
         }
-        .width(100.percent)
+        .width(.percent(100))
         .flexContainer(
             direction: .row,
             wrap: .nowrap,
             justification: .center,
             itemAlignment: .center
         )
-        .flexItem(basis: .length(100.percent))
+        .flexItem(basis: .percent(100))
     }
 }

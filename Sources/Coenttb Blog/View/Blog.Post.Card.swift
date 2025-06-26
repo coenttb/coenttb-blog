@@ -19,7 +19,6 @@ extension Blog.Post {
             blogClient.postToRoute(post)
         }
         
-        
         public init(
             _ post: Blog.Post
         ) {
@@ -30,24 +29,28 @@ extension Blog.Post {
             CoenttbHTML.Card {
                 VStack {
                     
-                    VStack(spacing: 0.5.rem) {
+                    VStack(
+                        spacing: .rem(0.5)
+                    ) {
                         div {
                             HTMLText("Blog \(post.index)\(post.category.map { " \($0.description)" } ?? "") - \(post.publishedAt.formatted(date: .complete, time: .omitted))")
                         }
                         .color(.text.tertiary)
-                        .fontStyle(.body(.small))
+                        .font(.body(.small))
                         
                         div {
-                            Header(4) {
-                                Link(href: href?.absoluteString) {
-                                    HTMLText(post.title)
-                                    if let subtitle = post.subtitle {
-                                        ":"
-                                        br()
-                                        HTMLText(subtitle)
+                            if let href {
+                                Header(4) {
+                                    Link(href: .init(href.absoluteString)) {
+                                        HTMLText(post.title)
+                                        if let subtitle = post.subtitle {
+                                            ":"
+                                            br()
+                                            HTMLText(subtitle)
+                                        }
                                     }
+                                    .linkColor(.text.primary)
                                 }
-                                .linkColor(.text.primary)
                             }
                         }
                     }
@@ -59,21 +62,40 @@ extension Blog.Post {
                 }
             }
             header: {
-                Link(href: href?.absoluteString) {
-                    div {
+                if let href {
+                    CoenttbHTML.Link(href: .init(href.absoluteString)) {
                         div {
-                            AnyHTML(post.image)
-                                .width(100.percent)
-                                .height(100.percent)
-                                .objectFit(.cover)
+                            div {
+                                AnyHTML(post.image)
+                                    .width(.percent(100))
+                                    .height(.percent(100))
+                                    .objectFit(.cover)
+                            }
+                            .position(
+                                .absolute,
+                                top: .zero,
+                                right: nil,
+                                bottom: nil,
+                                left: .zero,
+                            )
+                            .width(.percent(100))
+                            .height(.percent(100))
+//                            .size(
+//                                width: .percent(100),
+//                                height: .percent(100)
+//                            )
                         }
-                        .position(.absolute, top: 0, left: 0)
-                        .size(width: 100.percent, height: 100.percent)
+                        .position(.relative)
+                        .width(.percent(100))
+                        .height(.px(300))
+//                        .size(
+//                            width: .percent(100),
+//                            height: .px(300)
+//                        )
+                        .overflow(.hidden)
                     }
-                    .position(.relative)
-                    .size(width: 100.percent, height: .px(300))
-                    .overflow(.hidden)
                 }
+                
             }
             footer: {
                 Blog.Post.Card.Footer {
@@ -94,7 +116,7 @@ extension Blog.Post {
                         
                     }
                 }
-                .fontSize(.secondary)
+                .fontSize(.length(.secondary))
             }
             .backgroundColor(.cardBackground)
         }
@@ -140,7 +162,7 @@ import SwiftUI
 @MainActor let card: some HTML = Blog.Post.Card(.preview)
 
 #Preview {
-    HTMLPreview.modern {
+    HTMLDocument.modern {
         card
     }
 }

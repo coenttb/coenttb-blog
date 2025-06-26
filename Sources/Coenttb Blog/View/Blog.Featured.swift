@@ -42,20 +42,19 @@ extension Blog {
                 VStack {
                     LazyVGrid(
                         columns: [.desktop: columns],
-                        horizontalSpacing: 1.rem,
-                        verticalSpacing: 1.rem
+                        horizontalSpacing: .rem(1),
+                        verticalSpacing: .rem(1)
                     ) {
-
-                        for post in posts.suffix(3).reversed() {
+                        HTMLForEach(posts.suffix(3).reversed()) { post in
                             Blog.Post.Card(post)
-                                .maxWidth(24.rem, media: .desktop)
-                                .margin(top: 1.rem, right: 0, bottom: 2.rem, left: 0)
+                                .maxWidth(.rem(24), media: .desktop)
+                                .margin(top: .rem(1), right: 0, bottom: .rem(2), left: 0)
                         }
                     }
                 }
             } title: {
                 PageModuleSeeAllTitle(title: String.all_posts.capitalizingFirstLetter().description, seeAllURL: seeAllURL.absoluteString)
-                    .padding(bottom: 2.rem)
+                    .padding(bottom: .rem(2))
             }
         }
     }
@@ -76,7 +75,7 @@ import SwiftUI
         
     let card: some HTML = Blog.FeaturedModule(posts: posts, seeAllURL: .applicationDirectory)
     
-    HTMLPreview.modern {
+    HTMLDocument.modern {
         card
     }
 }
