@@ -107,7 +107,6 @@ extension Blog.Post {
                     case .subscriberOnly:
                         Label(fa: "lock") {
                             String.subscriber_only
-                            
                         }
                     }
                     
@@ -116,7 +115,7 @@ extension Blog.Post {
                         
                     }
                 }
-                .fontSize(.length(.secondary))
+                .fontSize(.secondary)
             }
             .backgroundColor(.cardBackground)
         }
@@ -156,7 +155,7 @@ extension Blog.Post {
     )
 }
 
-#if canImport(SwiftUI)
+#if DEBUG && canImport(SwiftUI)
 import SwiftUI
 
 @MainActor let card: some HTML = Blog.Post.Card(.preview)

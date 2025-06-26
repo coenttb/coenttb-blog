@@ -61,7 +61,7 @@ extension Blog {
 }
 
 
-#if canImport(SwiftUI)
+#if DEBUG && canImport(SwiftUI)
 
 import SwiftUI
 

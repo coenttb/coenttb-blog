@@ -62,7 +62,7 @@ extension Blog.Post {
     }
 }
 
-#if canImport(SwiftUI)
+#if DEBUG && canImport(SwiftUI)
 import SwiftUI
 #Preview {
     HTMLDocument.modern {
