@@ -48,16 +48,16 @@ extension Coenttb_Blog.Route {
                 return defaultDocument {
                     header()
                 }
-//            case 1:
-//                return try await response(
-//                    route: .post(.left(posts[0].slug)),
-//                    blurb: blurb,
-//                    companyXComHandle: companyXComHandle,
-//                    getCurrentUser: getCurrentUser,
-//                    coenttbWebNewsletter: coenttbWebNewsletter,
-//                    defaultDocument: defaultDocument,
-//                    posts: posts
-//                )
+            case 1:
+                return try await response(
+                    route: .post(.left(posts[0].slug)),
+                    blurb: blurb,
+                    companyXComHandle: companyXComHandle,
+                    getCurrentUser: getCurrentUser,
+                    coenttbWebNewsletter: coenttbWebNewsletter,
+                    defaultDocument: defaultDocument,
+                    posts: posts
+                )
             default:
                 return defaultDocument {
                     HTMLGroup {
