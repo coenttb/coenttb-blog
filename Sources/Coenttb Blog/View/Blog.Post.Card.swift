@@ -11,18 +11,18 @@ extension Blog.Post {
     public struct Card: HTML {
         @Dependency(\.date.now) var now
         @Dependency(\.language) var language
-        @Dependency(\.blog) var blogClient
         
         let post: Blog.Post
         
-        var href: URL? {
-            blogClient.postToRoute(post)
-        }
+        let href: URL?
         
         public init(
             _ post: Blog.Post
         ) {
             self.post = post
+            
+            @Dependency(\.blog) var blogClient
+            self.href = blogClient.postToRoute(post)
         }
         
         public var body: some HTML {
