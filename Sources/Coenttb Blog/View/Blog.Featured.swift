@@ -48,7 +48,12 @@ extension Blog {
                         HTMLForEach(posts.suffix(3).reversed()) { post in
                             Blog.Post.Card(post)
                                 .maxWidth(.rem(24), media: .desktop)
-                                .margin(top: .rem(1), right: 0, bottom: .rem(2), left: 0)
+                                .margin(
+                                    top: .rem(1),
+                                    right: 0,
+                                    bottom: .rem(2),
+                                    left: 0
+                                )
                         }
                     }
                 }
