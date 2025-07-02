@@ -87,10 +87,12 @@ extension Blog.Post {
 
 extension Blog.Post {
     public var content: String? {
+
         
-        #if DEBUG
-        return "debug content"
-        #endif
+        @Dependency(\.context) var context
+        
+        guard context != .preview
+        else { return "preview context" }
         
         @Dependency(\.blog) var blogClient
         @Dependency(\.language) var language
