@@ -21,8 +21,12 @@ extension Blog.Post {
         ) {
             self.post = post
             
+            #if DEBUG
+            self.href = .init(string: "#")
+            #else
             @Dependency(\.blog) var blogClient
             self.href = blogClient.postToRoute(post)
+            #endif
         }
         
         public var body: some HTML {
@@ -66,10 +70,13 @@ extension Blog.Post {
                     CoenttbHTML.Link(href: .init(href.absoluteString)) {
                         div {
                             div {
-                                AnyHTML(post.image)
+                                AnyHTML(
+                                    post.image
+                                )
+                                
                                     .width(.percent(100))
                                     .height(.percent(100))
-                                    .objectFit(.cover)
+//                                    .objectFit(.cover)
                             }
                             .position(
                                 .absolute,
@@ -143,7 +150,7 @@ extension Blog.Post {
         id: .init(),
         index: 1,
         publishedAt: .init(timeIntervalSince1970: 1_523_872_623),
-        image: HTMLEmpty(),
+        image: Square(),
         title: "Mock Blog post",
         hidden: .no,
         blurb: """
@@ -158,11 +165,27 @@ extension Blog.Post {
 #if DEBUG && canImport(SwiftUI)
 import SwiftUI
 
-@MainActor let card: some HTML = Blog.Post.Card(.preview)
+#Preview("Card") {
+    HTMLDocument {
+        Blog.Post.Card(.preview)
+    }
+    .frame(height: 800)
+}
 
-#Preview {
-    HTMLDocument.modern {
-        card
+struct Square: HTML {
+    var body: some HTML {
+        div(){}
+            .backgroundColor(.color(.blue))
+            .width(.percent(100))
+            .height(.px(300))  // Match the header height exactly
+            .display(.block)
+            .inlineStyle("max-width", "100%")
+    }
+}
+
+#Preview("Square") {
+    HTMLDocument {
+        Square()
     }
 }
 

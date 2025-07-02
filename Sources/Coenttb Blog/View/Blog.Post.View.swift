@@ -21,24 +21,43 @@ extension Blog.Post {
         public var body: some HTML {
             div {
                 div {
-                    AnyHTML(post.image)
-                        .position(
-                            .absolute,
-                            top: .zero,
-                            right: .zero,
-                            bottom: .zero,
-                            left: .zero
-                        )
-//                        .height(.percent(100))
-//                        .width(.percent(100))
+                    div {
+                        AnyHTML(post.image)
+//                            .objectPosition(
+//                                .init(
+//                                    x: .percent(50),
+//                                    y: .percent(65)
+//                                )
+//                            ) // or .percent(50) for both
+                            .objectPosition(.twoValues(.percentage(50), .percentage(50)))
+//                            .height(.percent(100))
+//                            .width(.percent(100))
+                            .objectFit(.cover)
+                            .maxWidth(.percent(100))
+                    }
+                    .position(
+                        .absolute,
+                        top: .zero,
+                        right: .zero,
+                        bottom: .zero,
+                        left: .zero
+                    )
+                    .width(.percent(100))
+                    .height(.percent(100))
                 }
-                .clipPath(.circle(.percent(50)))
-                .position(.relative)
-                .size(.rem(10))
-                
+                .position(
+                    .absolute,
+                    top: .zero,
+                    right: .zero,
+                    bottom: .zero,
+                    left: .zero
+                )
             }
+            .clipPath(.circle(.percent(50)))
+            .position(.relative)
+            .size(.rem(10))
             .padding(
-                top: .large
+                top: .length(.large)
             )
             .flexContainer(
                 justification: .center,
