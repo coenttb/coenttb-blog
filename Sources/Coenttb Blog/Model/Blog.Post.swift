@@ -87,6 +87,11 @@ extension Blog.Post {
 
 extension Blog.Post {
     public var content: String? {
+        
+        #if DEBUG
+        return "debug content"
+        #endif
+        
         @Dependency(\.blog) var blogClient
         @Dependency(\.language) var language
         @Dependency(\.languages) var languages

@@ -29,13 +29,16 @@ extension Blog.Post {
                             bottom: .zero,
                             left: .zero
                         )
+//                        .height(.percent(100))
+//                        .width(.percent(100))
                 }
                 .clipPath(.circle(.percent(50)))
                 .position(.relative)
                 .size(.rem(10))
+                
             }
             .padding(
-                top: .length(.large)
+                top: .large
             )
             .flexContainer(
                 justification: .center,
@@ -65,7 +68,7 @@ extension Blog.Post {
 #if DEBUG && canImport(SwiftUI)
 import SwiftUI
 #Preview {
-    HTMLDocument.modern {
+    HTMLDocument {
         Blog.Post.View(post: .preview)
     }
 }

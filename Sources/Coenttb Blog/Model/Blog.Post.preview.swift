@@ -13,7 +13,10 @@ extension [Coenttb_Blog.Blog.Post] {
             id: .init(),
             index: 1,
             publishedAt: .now,
-            image: HTMLEmpty(),
+            image: div(){}
+                .width(.px(100))
+                .aspectRatio(.ratio(.init(1, 1)))
+                .backgroundColor(.color(.blue)),
             title: TranslatedString(
                 dutch: "Een blik op AI en gegevensbescherming: Wat betekent de GDPR voor AI-projecten?",
                 english: "A Look at AI and Data Protection: What Does the GDPR Mean for AI Projects?"
@@ -36,3 +39,5 @@ extension [Coenttb_Blog.Blog.Post] {
         )
     ]
 }
+
+
