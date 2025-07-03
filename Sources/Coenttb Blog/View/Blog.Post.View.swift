@@ -19,32 +19,9 @@ extension Blog.Post {
         }
         
         public var body: some HTML {
-//            div {
-//                div {
-//                    div {
-//                        AnyHTML(post.image)
-//                            .objectFit(.cover)
-//                            .objectPosition(.twoValues(.percentage(50), .percentage(50)))
-//                            .height(.percent(100))
-//                            .width(.percent(100))
-//                            .maxWidth(.percent(100))
-//                            .borderStyle(BorderStyle.none)
-//                    }
-//                    .position(.absolute)
-//                    .width(.percent(100))
-//                    .height(.percent(100))
-//                    .display(.block)
-//                }
-//                .clipPath(.circle(.percent(50)))
-//                .position(
-//                    .relative
-//                )
-//                .width(.rem(10))
-//                .height(.rem(10))
-//            }
-            
             Circle {
                 AnyHTML(post.image)
+                    .objectPosition(.twoValues(.percentage(50), .percentage(50)))
             }
             
             .position(.relative)
@@ -75,37 +52,10 @@ extension Blog.Post {
     }
 }
 
-struct Circle: HTML {
-    
-    @HTMLBuilder let content: () -> any HTML
-    
-    let width: LengthPercentage = .rem(10)
-    let height: LengthPercentage = .rem(10)
-    
-    var body: some HTML {
-        div {
-            div {
-                div {
-                    AnyHTML(content())
-                        .objectFit(.cover)
-                        .objectPosition(.twoValues(.percentage(50), .percentage(50)))
-                        .height(.percent(100))
-                        .width(.percent(100))
-                        .maxWidth(.percent(100))
-                        .borderStyle(BorderStyle.none)
-                }
-                .position(.absolute)
-                .width(.percent(100))
-                .height(.percent(100))
-                .display(.block)
-            }
-            .clipPath(.circle(.percent(50)))
-            .position(.relative)
-            .width(.lengthPercentage(width))
-            .height(.lengthPercentage(height))
-        }
-    }
+extension ObjectPosition {
+    static let defaultObjectPosition: Self = .twoValues(.percentage(50), .percentage(50))
 }
+
 
 #if DEBUG && canImport(SwiftUI)
 import SwiftUI
@@ -116,3 +66,4 @@ import SwiftUI
 }
 
 #endif
+

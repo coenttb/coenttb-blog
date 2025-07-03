@@ -174,7 +174,7 @@ import SwiftUI
 
 struct Square: HTML {
     var body: some HTML {
-        div(){}
+        div {}
             .backgroundColor(.color(.blue))
             .width(.percent(100))
             .height(.px(300))  // Match the header height exactly

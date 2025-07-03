@@ -13,7 +13,7 @@ extension [Coenttb_Blog.Blog.Post] {
             id: .init(),
             index: 1,
             publishedAt: .now,
-            image: div(){}
+            image: div {}
                 .width(.px(100))
                 .aspectRatio(.ratio(.init(1, 1)))
                 .backgroundColor(.color(.blue)),
