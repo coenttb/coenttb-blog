@@ -20,13 +20,8 @@ extension Blog.Post {
             _ post: Blog.Post
         ) {
             self.post = post
-            
-            #if DEBUG
-            self.href = .init(string: "#")
-            #else
             @Dependency(\.blog) var blogClient
             self.href = blogClient.postToRoute(post)
-            #endif
         }
         
         public var body: some HTML {
