@@ -19,46 +19,37 @@ extension Blog.Post {
         }
         
         public var body: some HTML {
-            div {
-                div {
-                    div {
-                        AnyHTML(post.image)
-//                            .objectPosition(
-//                                .init(
-//                                    x: .percent(50),
-//                                    y: .percent(65)
-//                                )
-//                            ) // or .percent(50) for both
-                            .objectPosition(.twoValues(.percentage(50), .percentage(50)))
+//            div {
+//                div {
+//                    div {
+//                        AnyHTML(post.image)
+//                            .objectFit(.cover)
+//                            .objectPosition(.twoValues(.percentage(50), .percentage(50)))
 //                            .height(.percent(100))
 //                            .width(.percent(100))
-                            .objectFit(.cover)
-                            .maxWidth(.percent(100))
-                    }
-                    .position(
-                        .absolute,
-                        top: .zero,
-                        right: .zero,
-                        bottom: .zero,
-                        left: .zero
-                    )
-                    .width(.percent(100))
-                    .height(.percent(100))
-                }
-                .position(
-                    .absolute,
-                    top: .zero,
-                    right: .zero,
-                    bottom: .zero,
-                    left: .zero
-                )
+//                            .maxWidth(.percent(100))
+//                            .borderStyle(BorderStyle.none)
+//                    }
+//                    .position(.absolute)
+//                    .width(.percent(100))
+//                    .height(.percent(100))
+//                    .display(.block)
+//                }
+//                .clipPath(.circle(.percent(50)))
+//                .position(
+//                    .relative
+//                )
+//                .width(.rem(10))
+//                .height(.rem(10))
+//            }
+            
+            Circle {
+                AnyHTML(post.image)
             }
-            .clipPath(.circle(.percent(50)))
+            
             .position(.relative)
-            .size(.rem(10))
-            .padding(
-                top: .length(.large)
-            )
+            .size(.rem(10)) // Make sure this is 10rem, not smaller
+            .padding(top: .length(.large))
             .flexContainer(
                 justification: .center,
                 itemAlignment: .center
@@ -80,6 +71,38 @@ extension Blog.Post {
                     .width(.percent(100))
                 }
             }
+        }
+    }
+}
+
+struct Circle: HTML {
+    
+    @HTMLBuilder let content: () -> any HTML
+    
+    let width: LengthPercentage = .rem(10)
+    let height: LengthPercentage = .rem(10)
+    
+    var body: some HTML {
+        div {
+            div {
+                div {
+                    AnyHTML(content())
+                        .objectFit(.cover)
+                        .objectPosition(.twoValues(.percentage(50), .percentage(50)))
+                        .height(.percent(100))
+                        .width(.percent(100))
+                        .maxWidth(.percent(100))
+                        .borderStyle(BorderStyle.none)
+                }
+                .position(.absolute)
+                .width(.percent(100))
+                .height(.percent(100))
+                .display(.block)
+            }
+            .clipPath(.circle(.percent(50)))
+            .position(.relative)
+            .width(.lengthPercentage(width))
+            .height(.lengthPercentage(height))
         }
     }
 }

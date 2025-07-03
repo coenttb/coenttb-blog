@@ -17,26 +17,26 @@ Applying GDPR: Key Considerations for AI Projects
 1. Lawful Basis for Data Processing
 
 Organizations must establish a lawful basis for processing personal data under Article 6 of the GDPR. Common grounds for AI projects include:
-    •    Consent: Explicit consent from data subjects is often required, particularly when processing sensitive data such as health information.
-    •    Legitimate Interests: Processing may be justified if it is necessary for the organization’s legitimate interests and does not override individuals’ rights.
+    * Consent: Explicit consent from data subjects is often required, particularly when processing sensitive data such as health information.
+    * Legitimate Interests: Processing may be justified if it is necessary for the organization’s legitimate interests and does not override individuals’ rights.
 
     Case study: In the health-tech platform, explicit consent from patients is obtained before processing their data. However, ensuring that consent is informed and freely given remains a challenge, as patients may not fully understand how the AI processes their information.
 
 2. Data Protection by Design and Default
 
 AI projects must implement data protection principles from the outset, incorporating technical and organizational measures to safeguard data. Article 25 of the GDPR emphasizes:
-    •    Pseudonymization: Replacing identifying information with pseudonyms to reduce risks.
-    •    Data Encryption: Protecting data at rest and in transit to prevent unauthorized access.
-    •    Access Controls: Limiting data access to authorized personnel only.
+    * Pseudonymization: Replacing identifying information with pseudonyms to reduce risks.
+    * Data Encryption: Protecting data at rest and in transit to prevent unauthorized access.
+    * Access Controls: Limiting data access to authorized personnel only.
 
     Case study: The health-tech startup uses pseudonymization to ensure patient identities are not directly linked to their medical data. This reduces the risk of re-identification in case of a data breach.
 
 3. Automated Decision-Making and Profiling
 
 AI systems that involve automated decision-making (ADM) must comply with Article 22, which grants individuals the right not to be subject to decisions based solely on automated processing unless:
-    •    Explicit consent is obtained.
-    •    The decision is necessary for a contract.
-    •    The decision is authorized by law.
+    * Explicit consent is obtained.
+    * The decision is necessary for a contract.
+    * The decision is authorized by law.
 
 Additionally, individuals must be provided with an explanation of the logic behind the AI’s decisions and have the ability to challenge outcomes.
 
@@ -45,19 +45,19 @@ Additionally, individuals must be provided with an explanation of the logic behi
 4. Data Subject Rights and AI Systems
 
 The GDPR grants individuals several rights that AI systems must accommodate, including:
-    •    Right to Access: Individuals can request access to their personal data.
-    •    Right to Rectification: Errors in the data must be corrected promptly.
-    •    Right to Erasure (“Right to be Forgotten”): Individuals can request deletion of their data under certain conditions.
-    •    Right to Data Portability: Data must be provided in a structured, machine-readable format if requested.
+    * Right to Access: Individuals can request access to their personal data.
+    * Right to Rectification: Errors in the data must be corrected promptly.
+    * Right to Erasure (“Right to be Forgotten”): Individuals can request deletion of their data under certain conditions.
+    * Right to Data Portability: Data must be provided in a structured, machine-readable format if requested.
 
     Case study: The health-tech platform implements a user dashboard where patients can view, correct, or delete their data. The system also supports data portability by allowing patients to download their medical data in standard formats.
 
 5. Data Impact Assessments (DPIA)
 
 For high-risk processing activities, such as AI systems handling sensitive data, a Data Protection Impact Assessment (DPIA) is mandatory under Article 35. This involves:
-    •    Assessing the risks to data subjects.
-    •    Identifying measures to mitigate risks.
-    •    Consulting with Data Protection Authorities (DPAs) if necessary.
+    * Assessing the risks to data subjects.
+    * Identifying measures to mitigate risks.
+    * Consulting with Data Protection Authorities (DPAs) if necessary.
 
     Case study: The startup conducts a DPIA to evaluate the risks associated with its platform. Findings include potential biases in the AI model and the risk of re-identification, prompting additional safeguards.
 

@@ -92,7 +92,12 @@ extension Blog.Post {
         @Dependency(\.context) var context
         
         guard context != .preview
-        else { return "preview context" }
+        else {
+            return """
+            # AI Lorem Ipsum
+            Artificial Intelligence (AI) is reshaping how we process and analyze data, but it also raises challenging legal questions, particularly around privacy. In this blog post, Coen ten Thije Boonkkamp explores the intersection of AI and the General Data Protection Regulation (GDPR). From practical guidelines to navigating gray areas, this post provides insights for legal professionals, developers, and policymakers seeking to implement AI in a compliant way.
+            """
+        }
         
         @Dependency(\.blog) var blogClient
         @Dependency(\.language) var language
