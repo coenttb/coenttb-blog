@@ -157,16 +157,6 @@ extension Blog.Post {
     )
 }
 
-#if DEBUG && canImport(SwiftUI)
-import SwiftUI
-
-#Preview("Card") {
-    HTMLDocument {
-        Blog.Post.Card(.preview)
-    }
-    .frame(height: 800)
-}
-
 struct Square: HTML {
     var body: some HTML {
         div {}
@@ -176,6 +166,16 @@ struct Square: HTML {
             .display(.block)
             .inlineStyle("max-width", "100%")
     }
+}
+
+#if DEBUG && canImport(SwiftUI)
+import SwiftUI
+
+#Preview("Card") {
+    HTMLDocument {
+        Blog.Post.Card(.preview)
+    }
+    .frame(height: 800)
 }
 
 #Preview("Square") {
