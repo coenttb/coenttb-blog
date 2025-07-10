@@ -131,6 +131,7 @@ extension Blog.Post.Card {
             HStack(alignment: .center) {
                 content
             }
+            .marginTop(.auto)
             .color(.gray650.withDarkColor(.gray400))
             .linkColor(.gray650.withDarkColor(.gray400))
         }
