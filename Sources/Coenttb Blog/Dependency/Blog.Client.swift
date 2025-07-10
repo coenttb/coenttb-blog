@@ -37,7 +37,9 @@ extension BlogKey: TestDependencyKey {
     public static let testValue: Coenttb_Blog.Client = .init(
         getAll: {
             [
-                .preview
+                .preview,
+                .preview2,
+                .preview,
             ]
         },
         filenameToResourceUrl: { fileName in

@@ -80,9 +80,10 @@ import SwiftUI
         
     let card: some HTML = Blog.FeaturedModule(posts: posts, seeAllURL: .applicationDirectory)
     
-    HTMLDocument.modern {
+    HTMLDocument {
         card
     }
+    .frame(width: 1024)
 }
 
 #endif

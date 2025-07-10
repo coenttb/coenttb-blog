@@ -25,7 +25,7 @@
       "location" : "https://github.com/coenttb/coenttb-html",
       "state" : {
         "branch" : "main",
-        "revision" : "c219ae68ec26cf3412831c54f5015e634f640dc8"
+        "revision" : "68105ac8568d860aa87ed6fe1aa0291e8c88342b"
       }
     },
     {
@@ -61,7 +61,7 @@
       "location" : "https://github.com/coenttb/coenttb-web",
       "state" : {
         "branch" : "main",
-        "revision" : "305f3dc2165d58c69b00ba6d91f6a6a560bdbe9d"
+        "revision" : "f0615b0ffc1cfaebdc6d738da361a1c867a9834e"
       }
     },
     {
@@ -231,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-certificates.git",
       "state" : {
-        "revision" : "999fd70c7803da89f3904d635a6815a2a7cd7585",
-        "version" : "1.10.0"
+        "revision" : "870f4d5fe5fcfedc13f25d70e103150511746404",
+        "version" : "1.11.0"
       }
     },
     {
@@ -340,7 +340,7 @@
       "location" : "https://github.com/coenttb/swift-html.git",
       "state" : {
         "branch" : "main",
-        "revision" : "f8bc46e64e5122dc9eb47672b8adac1b9870a69f"
+        "revision" : "2244c4c7981ed0a0f0f8596c610ab61e57c562b3"
       }
     },
     {
@@ -349,7 +349,7 @@
       "location" : "https://github.com/coenttb/swift-html-css-pointfree",
       "state" : {
         "branch" : "main",
-        "revision" : "a629aed341d357691b1ad540f7e3fcc3660948d1"
+        "revision" : "d2e6c7a617c5123d7eb8c3740377ac6719779149"
       }
     },
     {
@@ -367,7 +367,7 @@
       "location" : "https://github.com/coenttb/swift-html-types.git",
       "state" : {
         "branch" : "main",
-        "revision" : "304e2093b0bc31b3aaa258d3521bb612cb65f1b7"
+        "revision" : "5c8695efb13e587e76dee2a76c2ccc61ee604a45"
       }
     },
     {

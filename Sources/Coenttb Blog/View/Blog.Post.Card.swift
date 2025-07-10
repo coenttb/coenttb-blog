@@ -100,6 +100,8 @@ extension Blog.Post {
                 
             }
             footer: {
+                
+                
                 Blog.Post.Card.Footer {
                     switch post.permission {
                     case .free:
@@ -120,6 +122,7 @@ extension Blog.Post {
                 .fontSize(.secondary)
             }
             .backgroundColor(.cardBackground)
+            
         }
     }
 }
@@ -138,6 +141,14 @@ extension Blog.Post.Card {
     }
 }
 
+public struct Spacer: HTML {
+    public init() {}
+    
+    public var body: some HTML {
+        div {}
+            .flexGrow(1)
+    }
+}
 
 
 
@@ -152,6 +163,21 @@ extension Blog.Post {
         blurb: """
         This is the blurb to a mock blog post. This should just be short and to the point, using \
         only plain text, no markdown.
+        """,
+        estimatedTimeToComplete: 10.minutes,
+        permission: .free
+    )
+    
+    static let preview2: Self = .init(
+        id: .init(),
+        index: 1,
+        publishedAt: .init(timeIntervalSince1970: 1_523_872_623),
+        image: Square(),
+        title: "Mock Blog post",
+        hidden: .no,
+        blurb: """
+        This is the blurb to a mock blog post. This should just be short and to the point, using only plain text, no markdown. This is the blurb to a mock blog post. This should just be short and to the point, using only plain text, no markdown. This is the blurb to a mock blog post. This should just be short and to the point, using only plain text, no markdown.
+        .
         """,
         estimatedTimeToComplete: 10.minutes,
         permission: .free
