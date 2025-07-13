@@ -35,8 +35,6 @@ extension Blog {
 
         public var body: some HTML {
             PageModule(
-//                title: .all_posts.capitalizingFirstLetter().description,
-//                seeAllURL: serverRouter.href(for: .blog(.index)),
                 theme: .content
             ) {
                 VStack {
@@ -50,9 +48,9 @@ extension Blog {
                                 .maxWidth(.rem(24), media: .desktop)
                                 .margin(
                                     top: .rem(1),
-                                    right: 0,
+                                    right: .zero,
                                     bottom: .rem(2),
-                                    left: 0
+                                    left: .zero
                                 )
                         }
                     }
