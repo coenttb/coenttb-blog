@@ -5,13 +5,13 @@
 //  Created by Coen ten Thije Boonkkamp on 16/12/2024.
 //
 
-import Coenttb_Web
 import Coenttb_Blog
 import Coenttb_Vapor
+import Coenttb_Web
 
-extension Coenttb_Blog.Route {
+extension Blog.Route {
     public static func response(
-        route: Coenttb_Blog.Route,
+        route: Blog.Route,
         blurb: TranslatedString,
         companyXComHandle: String?,
         getCurrentUser: () -> (newsletterSubscribed: Bool, accessToBlog: Bool)?,
@@ -21,7 +21,7 @@ extension Coenttb_Blog.Route {
     ) async throws -> any AsyncResponseEncodable {
         switch route {
         case .index:
-            
+
             let header = {
                 PageHeader(
                     title: .blog.capitalizingFirstLetter().description,
@@ -32,9 +32,9 @@ extension Coenttb_Blog.Route {
                     HTMLGroup {
                         "\(String.curious_what_is_next.description.capitalizingFirstLetter())".questionmark
                             .color(.text.secondary)
-                        
+
                         HTMLText(" ")
-                        
+
                         if let companyXComHandle {
                             Link(String.follow_me_on_Twitter.capitalizingFirstLetter().period.description, href: .init("https://x.com/\(companyXComHandle)"))
                                 .linkUnderline(true)
@@ -62,7 +62,7 @@ extension Coenttb_Blog.Route {
                 return defaultDocument {
                     HTMLGroup {
                         header()
-                        
+
                         Coenttb_Blog.Blog.AllPostsModule(
                             posts: posts
                         )
@@ -71,7 +71,7 @@ extension Coenttb_Blog.Route {
             }
 
         case .post(let identifier):
-            
+
             let currentUser = getCurrentUser()
 
             guard let post = posts.lazy.first(where: {

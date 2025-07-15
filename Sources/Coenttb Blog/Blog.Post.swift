@@ -21,7 +21,7 @@ extension Blog {
         public var blurb: String
         public var estimatedTimeToComplete: DateComponents
         public var permission: Permission
-        
+
         public init(
             id: UUID,
             index: Int,
@@ -88,9 +88,8 @@ extension Blog.Post {
 extension Blog.Post {
     public var content: String? {
 
-        
         @Dependency(\.context) var context
-        
+
         guard context != .preview
         else {
             return """
@@ -98,7 +97,7 @@ extension Blog.Post {
             Artificial Intelligence (AI) is reshaping how we process and analyze data, but it also raises challenging legal questions, particularly around privacy. In this blog post, Coen ten Thije Boonkkamp explores the intersection of AI and the General Data Protection Regulation (GDPR). From practical guidelines to navigating gray areas, this post provides insights for legal professionals, developers, and policymakers seeking to implement AI in a compliant way.
             """
         }
-        
+
         @Dependency(\.blog) var blogClient
         @Dependency(\.language) var language
         @Dependency(\.languages) var languages
@@ -107,7 +106,7 @@ extension Blog.Post {
         else {
             return nil
         }
-        
+
         return blogClient.filenameToResourceUrl(blogClient.postToFilename(self)(language))
             .flatMap { try? Data(contentsOf: $0) }
             .flatMap { String(data: $0, encoding: .utf8) }
@@ -121,6 +120,3 @@ extension Blog.Post {
       case subscriberOnly
     }
 }
-
-
-

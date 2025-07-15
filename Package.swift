@@ -30,14 +30,14 @@ let package = Package(
     ],
     products: [
         .library(name: .coenttbBlog, targets: [.coenttbBlog]),
-        .library(name: .coenttbBlogVapor, targets: [.coenttbBlogVapor]),
+        .library(name: .coenttbBlogVapor, targets: [.coenttbBlogVapor])
     ],
     dependencies: [
         .package(url: "https://github.com/coenttb/swift-html-css-pointfree", branch: "main"),
         .package(url: "https://github.com/coenttb/coenttb-web", branch: "main"),
         .package(url: "https://github.com/coenttb/coenttb-server-vapor", branch: "main"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.5"),
-        .package(url: "https://github.com/pointfreeco/swift-prelude", from: "0.6.0"),
+        .package(url: "https://github.com/pointfreeco/swift-prelude", from: "0.6.0")
     ],
     targets: [
         .target(
@@ -55,7 +55,7 @@ let package = Package(
                 .dependenciesMacros,
                 .either,
                 .coenttbWeb,
-                .coenttbVapor,
+                .coenttbVapor
             ]
         ),
         .testTarget(
@@ -63,7 +63,7 @@ let package = Package(
             dependencies: [
                 .coenttbBlog,
                 .dependenciesTestSupport,
-                .htmlTestSupport,
+                .htmlTestSupport
             ],
             resources: [ .process("Resources") ]
         )

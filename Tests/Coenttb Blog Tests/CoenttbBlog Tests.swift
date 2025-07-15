@@ -5,13 +5,13 @@
 //  Created by Coen ten Thije Boonkkamp on 13/12/2024.
 //
 
+@testable import Coenttb_Blog
+import Dependencies
+import DependenciesTestSupport
 import Foundation
-import Testing
 import HTML
 import HTMLTestSupport
-import Dependencies
-@testable import Coenttb_Blog
-import DependenciesTestSupport
+import Testing
 
 @Suite(
     "Blog test suite",
@@ -28,14 +28,14 @@ struct TestSuite {
         @Dependency(
             \.blog.getAll
         ) var getAll
-        
+
         let x = getAll()
-        
+
         #expect(
             x.count == 1
         )
     }
-    
+
     @Test
     func testBlogView() {
         assertInlineSnapshot(

@@ -9,21 +9,21 @@ import Coenttb_Web
 
 extension Blog.Post {
     public struct View: HTML {
-        
+
         let post: Blog.Post
-        
+
         @Dependency(\.locale) var locale
-        
+
         public init(post: Blog.Post) {
             self.post = post
         }
-        
+
         public var body: some HTML {
             Circle {
                 AnyHTML(post.image)
                     .objectPosition(.twoValues(.percentage(50), .percentage(50)))
             }
-            
+
             .position(.relative)
             .size(.rem(10)) // Make sure this is 10rem, not smaller
             .padding(top: .length(.large))
@@ -40,7 +40,7 @@ extension Blog.Post {
                         }
                         .color(.text.tertiary)
                         .font(.body(.small))
-                        
+
                         HTMLMarkdown {
                             content
                         }
@@ -56,7 +56,6 @@ extension ObjectPosition {
     static let defaultObjectPosition: Self = .twoValues(.percentage(50), .percentage(50))
 }
 
-
 #if DEBUG && canImport(SwiftUI)
 import SwiftUI
 #Preview {
@@ -66,4 +65,3 @@ import SwiftUI
 }
 
 #endif
-

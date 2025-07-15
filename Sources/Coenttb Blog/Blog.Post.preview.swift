@@ -39,5 +39,3 @@ extension [Coenttb_Blog.Blog.Post] {
         )
     ]
 }
-
-

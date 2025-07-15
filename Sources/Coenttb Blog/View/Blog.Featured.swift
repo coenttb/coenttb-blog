@@ -12,7 +12,7 @@ extension Blog {
 
         let posts: [Blog.Post]
         let seeAllURL: URL
-        
+
         public init(
             posts: [Blog.Post],
             seeAllURL: URL
@@ -20,7 +20,6 @@ extension Blog {
             self.posts = posts
             self.seeAllURL = seeAllURL
         }
-       
 
         var columns: [Int] {
             switch posts.count {
@@ -29,9 +28,8 @@ extension Blog {
             default: [1, 1, 1]
             }
         }
-        
-        @Dependency(\.language) var language
 
+        @Dependency(\.language) var language
 
         public var body: some HTML {
             PageModule(
@@ -63,11 +61,9 @@ extension Blog {
     }
 }
 
-
 #if DEBUG && canImport(SwiftUI)
 
 import SwiftUI
-
 
 #Preview {
 
@@ -75,9 +71,9 @@ import SwiftUI
         @Dependency(\.blog) var blogClient
         return blogClient.getAll()
     }()
-        
+
     let card: some HTML = Blog.FeaturedModule(posts: posts, seeAllURL: .applicationDirectory)
-    
+
     HTMLDocument {
         card
     }

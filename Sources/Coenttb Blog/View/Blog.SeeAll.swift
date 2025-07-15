@@ -9,13 +9,13 @@ import Coenttb_Web
 
 extension Blog {
     public struct AllPostsModule: HTML {
-        
+
         let posts: [Blog.Post]
-        
+
         public init(posts: [Blog.Post]) {
             self.posts = posts
         }
-        
+
         var columns: [Int] {
             switch posts.count {
             case ...1: [1]
@@ -23,9 +23,9 @@ extension Blog {
             default: [1, 1, 1]
             }
         }
-        
+
         @Dependency(\.language) var language
-        
+
         public var body: some HTML {
             PageModule(
                 theme: .content
@@ -56,21 +56,20 @@ extension Blog {
     }
 }
 
-
 public struct PageModuleTitle<Title: HTML>: HTML {
-    
+
     let title: Title
-    
+
     public init(
         @HTMLBuilder title: () -> Title
     ) {
         self.title = title()
     }
-    
+
     public init(title: String) where Title == CoenttbHTML.Header<HTMLText> {
         self.title = Header(3) { HTMLText(title) }
     }
-    
+
     public var body: some HTML {
         div {
             title
