@@ -10,18 +10,27 @@ import Coenttb_Web
 
 extension Blog {
     public enum Route: Codable, Hashable, Sendable {
-        case index
-        case post(Either<String, Int>)
+        case view(Blog.Route.View)
     }
 }
 
-extension Blog.Route {
-    public static func post(slug: String) -> Blog.Route { .post(.left(slug)) }
-    public static func post(_ slug: String) -> Blog.Route { .post(.left(slug)) }
-    public static func post(id: Int) -> Blog.Route { .post(.right(id)) }
-    public static func post(_ id: Int) -> Blog.Route { .post(.right(id)) }
-    public static func post(_ post: Blog.Post) -> Blog.Route { .post(slug: post.slug) }
-}
+//extension Blog.Route {
+//    public static func post(slug: String) -> Blog.Route {
+//        .view(.post(.left(slug)))
+//    }
+//    public static func post(_ slug: String) -> Blog.Route {
+//        .view(.post(.left(slug)))
+//    }
+//    public static func post(id: Int) -> Blog.Route {
+//        .view(.post(.right(id)))
+//    }
+//    public static func post(_ id: Int) -> Blog.Route {
+//        .view(.post(.right(id)))
+//    }
+//    public static func post(_ post: Blog.Post) -> Blog.Route {
+//        .view(.post(slug: post.slug))
+//    }
+//}
 
 extension Blog.Route {
     public struct Router: ParserPrinter {
@@ -30,21 +39,9 @@ extension Blog.Route {
 
         public var body: some URLRouting.Router<Blog.Route> {
             OneOf {
-
-                URLRouting.Route(.case(Blog.Route.post)) {
-                    Path {
-                        OneOf {
-                            Parse {
-                                Digits()
-                                    .map(.case(Either<String, Int>.right))
-                                End()
-                            }
-                            Parse(.string.map(.case(Either<String, Int>.left)))
-                        }
-                    }
+                URLRouting.Route(.case(Blog.Route.view)) {
+                    Blog.Route.View.Router()
                 }
-
-                URLRouting.Route(.case(Blog.Route.index))
             }
         }
     }

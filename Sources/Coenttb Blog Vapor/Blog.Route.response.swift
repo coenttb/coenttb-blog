@@ -20,100 +20,16 @@ extension Blog.Route {
         posts: [Blog.Post]
     ) async throws -> any AsyncResponseEncodable {
         switch route {
-        case .index:
-
-            let header = {
-                PageHeader(
-                    title: .blog.capitalizingFirstLetter().description,
-                    blurb: {
-                        blurb
-                    }
-                ) {
-                    HTMLGroup {
-                        "\(String.curious_what_is_next.description.capitalizingFirstLetter())".questionmark
-                            .color(.text.secondary)
-
-                        HTMLText(" ")
-
-                        if let companyXComHandle {
-                            Link(String.follow_me_on_Twitter.capitalizingFirstLetter().period.description, href: .init("https://x.com/\(companyXComHandle)"))
-                                .linkUnderline(true)
-                        }
-                    }
-                }
-            }
-
-            switch posts.count {
-            case 0:
-                return defaultDocument {
-                    header()
-                }
-            case 1:
-                return try await response(
-                    route: .post(.left(posts[0].slug)),
-                    blurb: blurb,
-                    companyXComHandle: companyXComHandle,
-                    getCurrentUser: getCurrentUser,
-                    coenttbWebNewsletter: coenttbWebNewsletter,
-                    defaultDocument: defaultDocument,
-                    posts: posts
-                )
-            default:
-                return defaultDocument {
-                    HTMLGroup {
-                        header()
-
-                        Coenttb_Blog.Blog.AllPostsModule(
-                            posts: posts
-                        )
-                    }
-                }
-            }
-
-        case .post(let identifier):
-
-            let currentUser = getCurrentUser()
-
-            guard let post = posts.lazy.first(where: {
-                switch identifier {
-                case .left(let string):
-                    $0.slug == string
-                case .right(let int):
-                    $0.index == int
-                }
-            }) else {
-                return try await response(
-                    route: .index,
-                    blurb: blurb,
-                    companyXComHandle: companyXComHandle,
-                    getCurrentUser: getCurrentUser,
-                    coenttbWebNewsletter: coenttbWebNewsletter,
-                    defaultDocument: defaultDocument,
-                    posts: posts
-                )
-            }
-
-            guard !(post.permission == .subscriberOnly && currentUser?.accessToBlog != true)
-            else {
-                return defaultDocument {
-                    Header(1) {
-                        TranslatedString(
-                            dutch: "Alleen voor subscribers",
-                            english: "Subscriber only"
-                        )
-                    }
-                }
-            }
-
-            return defaultDocument {
-                HTMLGroup {
-                    Blog.Post.View(post: post)
-
-                    if let coenttbWebNewsletter {
-                        AnyHTML(coenttbWebNewsletter())
-                    }
-                }
-            }
+        case .view(let view):
+            try await Blog.Route.View.response(
+                route: view,
+                blurb: blurb,
+                companyXComHandle: companyXComHandle,
+                getCurrentUser: getCurrentUser,
+                coenttbWebNewsletter: coenttbWebNewsletter,
+                defaultDocument: defaultDocument,
+                posts: posts
+            )
         }
     }
 }
