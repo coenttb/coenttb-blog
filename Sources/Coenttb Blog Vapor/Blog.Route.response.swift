@@ -12,24 +12,16 @@ import Coenttb_Web
 extension Blog.Route {
     public static func response(
         route: Blog.Route,
-        blurb: TranslatedString,
-        companyXComHandle: String?,
-        getCurrentUser: () -> (newsletterSubscribed: Bool, accessToBlog: Bool)?,
-        coenttbWebNewsletter: (() -> any HTML)?,
-        defaultDocument: @escaping (() -> any HTML) -> any AsyncResponseEncodable,
-        posts: [Blog.Post]
+        htmlDocument: @escaping (() -> any HTML) -> any AsyncResponseEncodable
     ) async throws -> any AsyncResponseEncodable {
         switch route {
         case .view(let view):
-            try await Blog.Route.View.response(
-                route: view,
-                blurb: blurb,
-                companyXComHandle: companyXComHandle,
-                getCurrentUser: getCurrentUser,
-                coenttbWebNewsletter: coenttbWebNewsletter,
-                defaultDocument: defaultDocument,
-                posts: posts
+            let response = try await Blog.Route.View.response(
+                route: view
             )
+            return htmlDocument {
+               response
+            }
         }
     }
 }

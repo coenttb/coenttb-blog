@@ -1,19 +1,24 @@
 //
 //  File.swift
-//  coenttb-web
+//  coenttb-nl-server
 //
-//  Created by Coen ten Thije Boonkkamp on 13/12/2024.
+//  Created by Coen ten Thije Boonkkamp on 19/08/2024.
 //
 
 import Coenttb_Web
 
 extension Blog {
-    public struct AllPostsModule: HTML {
+    public struct FeaturedModule: HTML {
 
         let posts: [Blog.Post]
+        let seeAllURL: URL
 
-        public init(posts: [Blog.Post]) {
+        public init(
+            posts: [Blog.Post],
+            seeAllURL: URL
+        ) {
             self.posts = posts
+            self.seeAllURL = seeAllURL
         }
 
         var columns: [Int] {
@@ -36,7 +41,7 @@ extension Blog {
                         horizontalSpacing: .rem(1),
                         verticalSpacing: .rem(1)
                     ) {
-                        HTMLForEach(posts.reversed()) { post in
+                        HTMLForEach(posts.suffix(3).reversed()) { post in
                             Blog.Post.Card(post)
                                 .maxWidth(.rem(24), media: .desktop)
                                 .margin(
@@ -49,38 +54,30 @@ extension Blog {
                     }
                 }
             } title: {
-                PageModuleTitle(title: String.all_posts.capitalizingFirstLetter().description)
+                PageModuleSeeAllTitle(title: String.all_posts.capitalizingFirstLetter().description, seeAllURL: seeAllURL.absoluteString)
                     .padding(bottom: .rem(2))
             }
         }
     }
 }
 
-public struct PageModuleTitle<Title: HTML>: HTML {
+#if DEBUG && canImport(SwiftUI)
 
-    let title: Title
+import SwiftUI
 
-    public init(
-        @HTMLBuilder title: () -> Title
-    ) {
-        self.title = title()
+#Preview {
+
+    let posts: [Blog.Post] = {
+        @Dependency(\.blog.client) var blogClient
+        return blogClient.getAll()
+    }()
+
+    let card: some HTML = Blog.FeaturedModule(posts: posts, seeAllURL: .applicationDirectory)
+
+    HTMLDocument {
+        card
     }
-
-    public init(title: String) where Title == CoenttbHTML.Header<HTMLText> {
-        self.title = Header(3) { HTMLText(title) }
-    }
-
-    public var body: some HTML {
-        div {
-            title
-        }
-        .width(.percent(100))
-        .flexContainer(
-            direction: .row,
-            wrap: .nowrap,
-            justification: .center,
-            itemAlignment: .center
-        )
-        .flexItem(basis: .percent(100))
-    }
+    .frame(width: 1024)
 }
+
+#endif

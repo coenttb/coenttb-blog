@@ -11,22 +11,19 @@ import Coenttb_Web
 
 extension Blog.Route.View {
     public static func response(
-        route: Blog.Route.View,
-        blurb: TranslatedString,
-        companyXComHandle: String?,
-        getCurrentUser: () -> (newsletterSubscribed: Bool, accessToBlog: Bool)?,
-        coenttbWebNewsletter: (() -> any HTML)?,
-        defaultDocument: @escaping (() -> any HTML) -> any AsyncResponseEncodable,
-        posts: [Blog.Post]
-    ) async throws -> any AsyncResponseEncodable {
+        route: Blog.Route.View
+    ) async throws -> any HTML {
         switch route {
         case .index:
-
+            
+            @Dependency(\.blog.configuration.titleBlurb) var titleBlurb
+            @Dependency(\.blog.configuration.companyXComHandle) var companyXComHandle
+            
             let header = {
                 PageHeader(
                     title: .blog.capitalizingFirstLetter().description,
                     blurb: {
-                        blurb
+                        titleBlurb
                     }
                 ) {
                     HTMLGroup {
@@ -42,37 +39,36 @@ extension Blog.Route.View {
                     }
                 }
             }
+            
+            @Dependency(\.blog.client.getAll) var getAll
+            
+            let posts = getAll()
 
             switch posts.count {
             case 0:
-                return defaultDocument {
-                    header()
-                }
+                return header()
             case 1:
+                
                 return try await response(
-                    route: .post(.left(posts[0].slug)),
-                    blurb: blurb,
-                    companyXComHandle: companyXComHandle,
-                    getCurrentUser: getCurrentUser,
-                    coenttbWebNewsletter: coenttbWebNewsletter,
-                    defaultDocument: defaultDocument,
-                    posts: posts
+                    route: .post(.left(posts[0].slug))
                 )
             default:
-                return defaultDocument {
-                    HTMLGroup {
-                        header()
+                return HTMLGroup {
+                    header()
 
-                        Coenttb_Blog.Blog.AllPostsModule(
-                            posts: posts
-                        )
-                    }
+                    Blog.Route.View.Index(
+                        posts: posts
+                    )
                 }
             }
 
         case .post(let identifier):
 
+            @Dependency(\.blog.client.getCurrentUser) var getCurrentUser
+            @Dependency(\.blog.client.getAll) var getAll
+            
             let currentUser = getCurrentUser()
+            let posts = getAll()
 
             guard let post = posts.lazy.first(where: {
                 switch identifier {
@@ -83,35 +79,27 @@ extension Blog.Route.View {
                 }
             }) else {
                 return try await response(
-                    route: .index,
-                    blurb: blurb,
-                    companyXComHandle: companyXComHandle,
-                    getCurrentUser: getCurrentUser,
-                    coenttbWebNewsletter: coenttbWebNewsletter,
-                    defaultDocument: defaultDocument,
-                    posts: posts
+                    route: .index
                 )
             }
 
             guard !(post.permission == .subscriberOnly && currentUser?.accessToBlog != true)
             else {
-                return defaultDocument {
-                    Header(1) {
-                        TranslatedString(
-                            dutch: "Alleen voor subscribers",
-                            english: "Subscriber only"
-                        )
-                    }
+                return Header(1) {
+                    TranslatedString(
+                        dutch: "Alleen voor subscribers",
+                        english: "Subscriber only"
+                    )
                 }
             }
+            
+            @Dependency(\.blog.configuration.newsletterSection) var newsletterSection
 
-            return defaultDocument {
-                HTMLGroup {
-                    Blog.Post.View(post: post)
+            return HTMLGroup {
+                Blog.Post.View(post: post)
 
-                    if let coenttbWebNewsletter {
-                        AnyHTML(coenttbWebNewsletter())
-                    }
+                if let newsletterSection {
+                    AnyHTML(newsletterSection())
                 }
             }
         }

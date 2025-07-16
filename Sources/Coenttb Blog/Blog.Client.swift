@@ -30,6 +30,9 @@ extension Blog {
 
         @DependencyEndpoint
         public var postToFilename: (Blog.Post) -> TranslatedString = { _ in .init("") }
+        
+        @DependencyEndpoint
+        public var getCurrentUser: @Sendable () -> (newsletterSubscribed: Bool, accessToBlog: Bool)?
     }
 }
 
@@ -59,6 +62,10 @@ extension Blog.Client: TestDependencyKey {
 
                 return (post.hidden == .preview ? previewBaseName : baseName) + "-\(language.rawValue)"
             }
+        },
+        getCurrentUser: {
+//            (newsletterSubscribed: Bool, accessToBlog: Bool)
+            nil
         }
     )
 }
@@ -82,9 +89,3 @@ extension DependencyValues {
     }
 }
 
-extension DependencyValues {
-    public var blog: Blog.Client {
-        get { self[Blog.Client.self] }
-        set { self[Blog.Client.self] = newValue }
-    }
-}

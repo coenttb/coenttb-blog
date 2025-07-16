@@ -71,7 +71,6 @@ extension Blog.Post {
                                 
                                     .width(.percent(100))
                                     .height(.percent(100))
-//                                    .objectFit(.cover)
                             }
                             .position(
                                 .absolute,
@@ -82,18 +81,10 @@ extension Blog.Post {
                             )
                             .width(.percent(100))
                             .height(.percent(100))
-//                            .size(
-//                                width: .percent(100),
-//                                height: .percent(100)
-//                            )
                         }
                         .position(.relative)
                         .width(.percent(100))
                         .height(.px(300))
-//                        .size(
-//                            width: .percent(100),
-//                            height: .px(300)
-//                        )
                         .overflow(.hidden)
                     }
                 }

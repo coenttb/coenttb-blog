@@ -12,8 +12,6 @@ extension Blog.Post {
 
         let post: Blog.Post
 
-        @Dependency(\.locale) var locale
-
         public init(post: Blog.Post) {
             self.post = post
         }

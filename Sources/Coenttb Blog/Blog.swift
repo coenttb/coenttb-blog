@@ -5,22 +5,45 @@
 //  Created by Coen ten Thije Boonkkamp on 19/08/2024.
 //
 
-import Coenttb_Web
+import Dependencies
+import DependenciesMacros
+import Foundation
 
-public struct Blog {
+@DependencyClient
+@dynamicMemberLookup
+public struct Blog: Sendable {
+    public var client: Blog.Client
+    public var configuration: Blog.Configuration
 
+    public init(
+        client: Blog.Client,
+        configuration: Blog.Configuration
+    ) {
+        self.client = client
+        self.configuration = configuration
+    }
+
+    public subscript<T>(dynamicMember keyPath: WritableKeyPath<Blog.Client, T>) -> T {
+        self.client[keyPath: keyPath]
+    }
+
+    public subscript<T>(dynamicMember keyPath: WritableKeyPath<Blog.Configuration, T>) -> T {
+        self.configuration[keyPath: keyPath]
+    }
 }
 
-// public struct Blog {
-//    public var featured: (Blog.Post?, Blog.Post?, Blog.Post?) {
-//        let featuredPosts = Array(posts.sorted(by: { $0.publishedAt < $1.publishedAt }).prefix(3))
-//        return (featuredPosts[safe: 0], featuredPosts[safe: 1], featuredPosts[safe: 2])
-//    }
-//    public let posts: [Blog.Post]
-// }
+extension Blog: TestDependencyKey {
+    public static var testValue: Blog {
+        .init(
+            client: .testValue,
+            configuration: .testValue
+        )
+    }
+}
 
-extension Array {
-    subscript(safe index: Int) -> Element? {
-        return indices.contains(index) ? self[index] : nil
+extension DependencyValues {
+    public var blog: Blog {
+        get { self[Blog.self] }
+        set { self[Blog.self] = newValue }
     }
 }

@@ -1,24 +1,19 @@
 //
 //  File.swift
-//  coenttb-nl-server
+//  coenttb-web
 //
-//  Created by Coen ten Thije Boonkkamp on 19/08/2024.
+//  Created by Coen ten Thije Boonkkamp on 13/12/2024.
 //
 
 import Coenttb_Web
 
-extension Blog {
-    public struct FeaturedModule: HTML {
+extension Blog.Route.View {
+    public struct Index: HTML {
 
         let posts: [Blog.Post]
-        let seeAllURL: URL
 
-        public init(
-            posts: [Blog.Post],
-            seeAllURL: URL
-        ) {
+        public init(posts: [Blog.Post]) {
             self.posts = posts
-            self.seeAllURL = seeAllURL
         }
 
         var columns: [Int] {
@@ -41,7 +36,7 @@ extension Blog {
                         horizontalSpacing: .rem(1),
                         verticalSpacing: .rem(1)
                     ) {
-                        HTMLForEach(posts.suffix(3).reversed()) { post in
+                        HTMLForEach(posts.reversed()) { post in
                             Blog.Post.Card(post)
                                 .maxWidth(.rem(24), media: .desktop)
                                 .margin(
@@ -54,30 +49,25 @@ extension Blog {
                     }
                 }
             } title: {
-                PageModuleSeeAllTitle(title: String.all_posts.capitalizingFirstLetter().description, seeAllURL: seeAllURL.absoluteString)
-                    .padding(bottom: .rem(2))
+                div {
+                    Header(3) { String.all_posts.capitalizingFirstLetter().description }
+                    
+                }
+                .width(.percent(100))
+                .flexContainer(
+                    direction: .row,
+                    wrap: .nowrap,
+                    justification: .center,
+                    itemAlignment: .center
+                )
+                .flexItem(basis: .percent(100))
+                .padding(bottom: .rem(2))
             }
         }
     }
 }
 
-#if DEBUG && canImport(SwiftUI)
-
-import SwiftUI
-
-#Preview {
-
-    let posts: [Blog.Post] = {
-        @Dependency(\.blog) var blogClient
-        return blogClient.getAll()
-    }()
-
-    let card: some HTML = Blog.FeaturedModule(posts: posts, seeAllURL: .applicationDirectory)
-
-    HTMLDocument {
-        card
-    }
-    .frame(width: 1024)
+extension Blog {
+    @available(*, deprecated, renamed: "Index", message: "Please rename to Index")
+    public typealias AllPostsModule = Blog.Route.View
 }
-
-#endif

@@ -1,5 +1,5 @@
 {
-  "originHash" : "4ee4da1c6db4ebdc6b1b292c4b354ff24b78907a718869ab7317e9acd42ad3dc",
+  "originHash" : "e18cc5ec041dc367601358040d337072ff1a3a86c6cbe8ca8a2c0db2abb35eb6",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -25,7 +25,7 @@
       "location" : "https://github.com/coenttb/coenttb-html",
       "state" : {
         "branch" : "main",
-        "revision" : "68105ac8568d860aa87ed6fe1aa0291e8c88342b"
+        "revision" : "e895c686eedb544ef905be73841f56747d2c75c7"
       }
     },
     {
@@ -52,7 +52,7 @@
       "location" : "https://github.com/coenttb/coenttb-utils",
       "state" : {
         "branch" : "main",
-        "revision" : "87e5d018e4a2be4bda3cf11bed4c48eded9f31c8"
+        "revision" : "77fce35cc2465733c0afdc9dfd1ce7d40fe3f644"
       }
     },
     {
@@ -61,7 +61,7 @@
       "location" : "https://github.com/coenttb/coenttb-web",
       "state" : {
         "branch" : "main",
-        "revision" : "f0615b0ffc1cfaebdc6d738da361a1c867a9834e"
+        "revision" : "d820c9b06972251c36cce1aabd0307c6ecf29056"
       }
     },
     {
@@ -340,7 +340,7 @@
       "location" : "https://github.com/coenttb/swift-html.git",
       "state" : {
         "branch" : "main",
-        "revision" : "2244c4c7981ed0a0f0f8596c610ab61e57c562b3"
+        "revision" : "93c3d73dffdc0fbded383420cad860cb7130e994"
       }
     },
     {
@@ -349,7 +349,7 @@
       "location" : "https://github.com/coenttb/swift-html-css-pointfree",
       "state" : {
         "branch" : "main",
-        "revision" : "d2e6c7a617c5123d7eb8c3740377ac6719779149"
+        "revision" : "5e29ea76d5274775f1d58450b4bf540ed9bd6323"
       }
     },
     {
@@ -367,7 +367,7 @@
       "location" : "https://github.com/coenttb/swift-html-types.git",
       "state" : {
         "branch" : "main",
-        "revision" : "5c8695efb13e587e76dee2a76c2ccc61ee604a45"
+        "revision" : "161e58bc2740f990027d05f701f480f58a3f17ae"
       }
     },
     {
@@ -582,8 +582,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/vapor/vapor.git",
       "state" : {
-        "revision" : "4014016aad591a120f244f9b9e8a57252b7e62b4",
-        "version" : "4.115.0"
+        "revision" : "3636f443474769147828a5863e81a31f6f30e92c",
+        "version" : "4.115.1"
       }
     },
     {
