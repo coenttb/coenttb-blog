@@ -10,7 +10,7 @@ import Dependencies
 import DependenciesTestSupport
 import Foundation
 import HTML
-import HTMLTestSupport
+import PointFreeHtmlTestSupport
 import Testing
 
 @Suite(

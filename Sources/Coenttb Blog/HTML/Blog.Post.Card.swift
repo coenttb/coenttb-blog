@@ -17,11 +17,16 @@ extension Blog.Post {
         let href: URL?
         
         public init(
-            _ post: Blog.Post
+            _ post: Blog.Post,
+            href: URL? = nil
         ) {
             self.post = post
-            @Dependency(\.blog) var blogClient
-            self.href = blogClient.postToRoute(post)
+            if let href {
+                self.href = href
+            } else {
+                @Dependency(\.blog) var blogClient
+                self.href = blogClient.postToRoute(post)
+            }
         }
         
         public var body: some HTML {
@@ -39,7 +44,19 @@ extension Blog.Post {
                         
                         div {
                             if let href {
-                                Header(4) {
+                                
+                                if let category = post.category {
+                                    b {
+                                        Link(href: .init(href.absoluteString)) {
+                                            category
+                                        }
+                                        .linkColor(.text.primary)
+                                    }
+                                    .marginBottom(.zero)
+                                    .paddingBottom(.zero)
+                                }
+                                
+                                Header(4, disableMargins: post.category != nil ? true : false) {
                                     Link(href: .init(href.absoluteString)) {
                                         HTMLText(post.title)
                                         if let subtitle = post.subtitle {
@@ -50,6 +67,19 @@ extension Blog.Post {
                                     }
                                     .linkColor(.text.primary)
                                 }
+                                .margin(
+                                    post.category != nil
+                                    ? .sides(
+                                        .extraSmall,
+                                        .zero,
+                                        .zero,
+                                        .zero
+                                    )
+                                    : nil
+                                )
+//                                .marginTop(.zero)
+//                                .paddingTop(.zero)
+                                
                             }
                         }
                     }
@@ -141,12 +171,11 @@ public struct Spacer: HTML {
     }
 }
 
-
-
 extension Blog.Post {
     static let preview: Self = .init(
         id: .init(),
         index: 1,
+//        category: "Category",
         publishedAt: .init(timeIntervalSince1970: 1_523_872_623),
         image: Square(),
         title: "Mock Blog post",
@@ -191,7 +220,7 @@ import SwiftUI
 
 #Preview("Card") {
     HTMLDocument {
-        Blog.Post.Card(.preview)
+        Blog.Post.Card(.preview, href: .init(string: "#"))
     }
     .frame(height: 800)
 }

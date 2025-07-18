@@ -9,9 +9,11 @@ import Coenttb_Web
 
 extension [Coenttb_Blog.Blog.Post] {
     public static let preview: [Coenttb_Blog.Blog.Post] = [
+        .preview,
         .init(
             id: .init(),
             index: 1,
+            category: "Category",
             publishedAt: .now,
             image: div {}
                 .width(.px(100))

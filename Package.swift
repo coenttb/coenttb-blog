@@ -19,7 +19,7 @@ extension Target.Dependency {
     static var dependenciesMacros: Self { .product(name: "DependenciesMacros", package: "swift-dependencies") }
     static var dependenciesTestSupport: Self { .product(name: "DependenciesTestSupport", package: "swift-dependencies") }
     static var either: Self { .product(name: "Either", package: "swift-prelude") }
-    static var htmlTestSupport: Self { .product(name: "HTMLTestSupport", package: "swift-html-css-pointfree") }
+    static var pointfreeHtmlTestSupport: Self { .product(name: "PointFreeHtmlTestSupport", package: "pointfree-html") }
 }
 
 let package = Package(
@@ -35,6 +35,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/coenttb/swift-html-css-pointfree", branch: "main"),
         .package(url: "https://github.com/coenttb/coenttb-web", branch: "main"),
+        .package(url: "https://github.com/coenttb/pointfree-html", branch: "main"),
         .package(url: "https://github.com/coenttb/coenttb-server-vapor", branch: "main"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.5"),
         .package(url: "https://github.com/pointfreeco/swift-prelude", from: "0.6.0")
@@ -63,7 +64,7 @@ let package = Package(
             dependencies: [
                 .coenttbBlog,
                 .dependenciesTestSupport,
-                .htmlTestSupport
+                .pointfreeHtmlTestSupport
             ],
             resources: [ .process("Resources") ]
         )
