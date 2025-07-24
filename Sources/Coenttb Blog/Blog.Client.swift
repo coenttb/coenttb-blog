@@ -9,7 +9,7 @@ import Coenttb_Web
 import Date
 import Dependencies
 import DependenciesMacros
-import Languages
+import Translating
 
 import Foundation
 #if canImport(FoundationNetworking)
