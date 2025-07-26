@@ -6,7 +6,7 @@
 //
 
 import Coenttb_Web
-import Date
+import DateExtensions
 import Dependencies
 import DependenciesMacros
 import Translating
