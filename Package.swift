@@ -37,7 +37,7 @@ let package = Package(
         .package(url: "https://github.com/coenttb/coenttb-web", branch: "main"),
         .package(url: "https://github.com/coenttb/pointfree-html", from: "2.0.0"),
         .package(url: "https://github.com/coenttb/coenttb-server-vapor", branch: "main"),
-        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.1.5"),
+        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.2"),
         .package(url: "https://github.com/pointfreeco/swift-prelude", branch: "main")
     ],
     targets: [
