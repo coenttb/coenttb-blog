@@ -54,12 +54,20 @@ extension Blog {
                     }
                 }
             } title: {
-                PageModuleSeeAllTitle(title: String.all_posts.capitalizingFirstLetter().description, seeAllURL: seeAllURL.absoluteString)
+                PageModuleSeeAllTitle(
+                    title: TranslatedString(
+                        dutch: "recente posts",
+                        english: "recent posts"
+                    ).capitalizingFirstLetter().description,
+                    seeAllURL: seeAllURL.absoluteString
+                )
                     .padding(bottom: .rem(2))
             }
         }
     }
 }
+
+
 
 #if DEBUG && canImport(SwiftUI)
 
