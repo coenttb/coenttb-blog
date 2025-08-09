@@ -87,7 +87,7 @@ extension Blog.Post {
                     HTMLMarkdown(post.blurb)
                         .color(.text.primary)
                         .linkStyle(.init(underline: true))
-                        .dependency(\.color.text.link, .gray400.withDarkColor(.gray650))               
+                        .dependency(\.theme.text.link, .gray400.withDarkColor(.gray650))               
                 }
             }
             header: {
